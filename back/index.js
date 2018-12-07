@@ -11,15 +11,15 @@ let platform = 'ps4';
 app.get('/api/stats/:username', (req, res) => {
   const username = req.params.username;
 
-  R6.stats(username, platform).then(response => {
-    res.json(response);
+R6.stats(username, platform).then(response => {
+    res.send(response);
   }).catch(error => {
     console.error(error)
   });
 });
 
 //Get stats on the user on that platform
-app.get('/api/stats/persos/:username', (req, res) => {
+/*app.get('/api/stats/persos/:username', (req, res) => {
   const username = req.params.username;
 
   R6.stats(username, platform, true).then(response => {
@@ -28,7 +28,7 @@ app.get('/api/stats/persos/:username', (req, res) => {
     console.error(error)
   });
 
-});
+});*/
 
 app.use('/api/stats', statsRouter)
 

@@ -1,27 +1,51 @@
 import React, { Component } from 'react';
-import Card from './Card';
+import CardStat from './CardStat';
 import axios from 'axios';
 
 class Cards extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
-      stats: null
+      statsArray: []
     };
   }
 
-  componentDidMount(cards) {
-    axios.get('/api/stats/papipepite')
+  componentDidMount(){
+    const urls =
+    [
+      '/api/stats/papipepite',
+      '/api/stats/chlolien',
+      '/api/stats/kirikou09',
+      '/api/stats/valentino0939046',
+      '/api/stats/Baku-Champloo',
+    ]
+
+    let promiseArray = urls.map(url => axios.get(url).then(response => response.data).catch(error => { console.error(error) }));
+
+    Promise.all(promiseArray)
+      .then(statsArray => this.setState({ statsArray }))
+      }
+
+
+  /*componentDidMount(username) {
+    axios.get(`/api/stats/papipepite`)
       .then(response => response.data)
       .then(stats => this.setState({ stats }));
-  }
+  }*/
+
+
 
   render() {
-    const { stats } = this.state;
+    const { statsArray } = this.state;
     console.log(this.state)
     return(
       <div>
-          <h1>{stats && stats.player.stats.ranked.kd}</h1>
+        {
+          statsArray.map((stat, index) =>
+            <CardStat stats={stat}/>
+          )
+        }
       </div>
     );
   }
