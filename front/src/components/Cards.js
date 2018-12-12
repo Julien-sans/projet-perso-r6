@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import CardStat from './CardStat';
-import CardPerso from './CardPerso';
 import { Container, Row, Col, Card } from 'reactstrap';
 import axios from 'axios';
 
@@ -48,10 +47,10 @@ class Cards extends Component {
     const { statsArray } = this.state;
     console.log(this.state)
 
-    const attaquants = statsArray.sort((player1, player2) =>
+    const arrayPerso = statsArray.sort((player1, player2) =>
       player2.progression.level - player1.progression.level
     ).map(perso => perso.operators.sort((operateur1, operateur2) => operateur2.playtime - operateur1.playtime))
-    console.log(attaquants)
+    console.log(arrayPerso)
 
     const decreasingLevel = statsArray.sort((player1, player2) =>
       player2.progression.level - player1.progression.level
@@ -65,26 +64,10 @@ class Cards extends Component {
               decreasingLevel.map((stat, index) =>
                 <Col key={index} sm='4'>
                   <Card>
-                    <CardStat className="mx-auto" stats={stat} />
+                    <CardStat className="mx-auto" stats={stat} perso={arrayPerso[index]} />
                   </Card>
                 </Col>
               )
-            }
-            {
-              attaquants.map((perso, index) =>
-              <Col key={index} sm='4'>
-                <CardPerso perso={perso}/>
-              </Col>
-            )
-            }
-          </Row>
-          <Row>
-            {
-              attaquants.map((perso, index) =>
-              <Col key={index}>
-                {perso[0].operator.name}
-              </Col>
-            )
             }
           </Row>
         </Container>

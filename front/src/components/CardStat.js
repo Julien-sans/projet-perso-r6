@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Card, CardHeader } from 'reactstrap';
+import { CardHeader } from 'reactstrap';
 
 class CardStat extends Component {
   render() {
 
-    const { stats, attaquants } = this.props;
+    const { stats, perso } = this.props;
 
     return(
       <div>
@@ -18,6 +18,10 @@ class CardStat extends Component {
             </div>
             <div>
               {stats && stats.stats[0].queue.ranked.wl}
+            </div>
+            <div>
+              {perso[0].operator.name}
+              <img src={perso[0].operator.images.figure} alt="figures_perso" style={{maxWidth:'250px'}}/>
             </div>
          </CardHeader>
 

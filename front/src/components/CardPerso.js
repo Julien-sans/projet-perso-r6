@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, CardHeader, CardBody } from 'reactstrap';
+import { Card, CardBody } from 'reactstrap';
 
 class CardPerso extends Component {
   render() {
@@ -10,7 +10,7 @@ class CardPerso extends Component {
       <div>
         <Card outline color="primary">
           <CardBody>
-              {perso && perso}
+              {perso && perso[0].operator.name}
          </CardBody>
         </Card>
       </div>
