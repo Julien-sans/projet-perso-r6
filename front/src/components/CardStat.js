@@ -1,20 +1,27 @@
 import React, { Component } from 'react';
-import { Card, CardHeader, CardTitle } from 'reactstrap';
+import { Card, CardHeader } from 'reactstrap';
 
 class CardStat extends Component {
   render() {
 
-    const { stats } = this.props;
+    const { stats, attaquants } = this.props;
 
     return(
       <div>
-        <Card outline color="primary">
           <CardHeader>
-              {stats && stats.player.username}
-          </CardHeader>
-        </Card>
-    
-        <h1>{stats && stats.player.stats.ranked.kd}</h1>
+              {stats && stats.username}
+            <div>
+              {stats && stats.progression.level}
+            </div>
+            <div>
+              {stats && stats.stats[0].queue.ranked.kd}
+            </div>
+            <div>
+              {stats && stats.stats[0].queue.ranked.wl}
+            </div>
+         </CardHeader>
+
+
       </div>
     )
   }

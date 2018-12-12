@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import CardStat from './CardStat';
+import CardPerso from './CardPerso';
+import { Container, Row, Col, Card } from 'reactstrap';
 import axios from 'axios';
 
 class Cards extends Component {
@@ -14,11 +16,18 @@ class Cards extends Component {
   componentDidMount(){
     const urls =
     [
-      '/api/stats/papipepite',
-      '/api/stats/chlolien',
-      '/api/stats/kirikou09',
-      '/api/stats/valentino0939046',
-      '/api/stats/Baku-Champloo',
+      'api/stats/e180330f-e83f-43c3-abb2-bb3994108ae1',
+      'api/stats/c0c2cad6-abe7-4026-91ac-dc1c5d29cb5f',
+      'api/stats/f763f92e-ad89-4d2e-bd2c-bdc72ed44d8a/',
+      'api/stats/dd52645c-c662-4e45-9cf4-90a1acb79a97/',
+      'api/stats/d88f9352-d01c-4e91-a769-a4bbfbe5e0bd/',
+      'api/stats/d91a1487-4427-4858-97ed-2f9c772bc17c/',
+      'api/stats/9307af34-bc74-4716-be66-97f642d55069/',
+      'api/stats/98e0a69a-ac53-4461-862f-0e1471fe7ea5/',
+      'api/stats/f7734587-2bc6-42ff-a11a-024a347a5297/',
+      'api/stats/a4c18ded-1f4d-4b60-9a8c-19a7d60ff6ef/',
+      'api/stats/c04310ce-b4b3-49d8-9672-8048698108f9/',
+      'api/stats/e44cbc00-3336-4e53-a2e7-e934ad9588be/'
     ]
 
     let promiseArray = urls.map(url => axios.get(url).then(response => response.data).catch(error => { console.error(error) }));
@@ -34,18 +43,52 @@ class Cards extends Component {
       .then(stats => this.setState({ stats }));
   }*/
 
-
-
   render() {
+
     const { statsArray } = this.state;
     console.log(this.state)
+
+    const attaquants = statsArray.sort((player1, player2) =>
+      player2.progression.level - player1.progression.level
+    ).map(perso => perso.operators.sort((operateur1, operateur2) => operateur2.playtime - operateur1.playtime))
+    console.log(attaquants)
+
+    const decreasingLevel = statsArray.sort((player1, player2) =>
+      player2.progression.level - player1.progression.level
+    )
+
     return(
       <div>
-        {
-          statsArray.map((stat, index) =>
-            <CardStat stats={stat}/>
-          )
-        }
+        <Container fluid>
+          <Row>
+            {
+              decreasingLevel.map((stat, index) =>
+                <Col key={index} sm='4'>
+                  <Card>
+                    <CardStat className="mx-auto" stats={stat} />
+                  </Card>
+                </Col>
+              )
+            }
+            {
+              attaquants.map((perso, index) =>
+              <Col key={index} sm='4'>
+                <CardPerso perso={perso}/>
+              </Col>
+            )
+            }
+          </Row>
+          <Row>
+            {
+              attaquants.map((perso, index) =>
+              <Col key={index}>
+                {perso[0].operator.name}
+              </Col>
+            )
+            }
+          </Row>
+        </Container>
+
       </div>
     );
   }
