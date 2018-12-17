@@ -80,27 +80,27 @@ class CardStat extends Component {
               </div>
           </CardHeader>
           <CardBody className="text-center seasonCard1">
-            <div className="d-flex flex-row justify-content-between align-items-center">
+            <div className="d-flex flex-row justify-content-between align-items-center pl-5">
               <div className="w-80">
                 <div>{statsSeason && statsSeason.seasons.wind_bastion.name}</div>
                 <div>{statsSeason && statsSeason.seasons.wind_bastion.regions.emea[0].wins} victoires</div>
                 <div>{statsSeason && statsSeason.seasons.wind_bastion.regions.emea[0].losses} défaites</div>
                 <div>{abandons} {Abandon(abandons)}</div>
               </div>
-              <div>
+              <div className="pr-5">
                 {Rank(rankNumber, arrayImage)}
               </div>
             </div>
           </CardBody>
           <CardBody className="text-center seasonCard2">
-            <div className="d-flex flex-row justify-content-between align-items-center">
+            <div className="d-flex flex-row justify-content-between align-items-center pl-5">
               <div>
                 <div>{statsSeason && statsSeason.seasons.grim_sky.name}</div>
                 <div>{statsSeason && statsSeason.seasons.grim_sky.regions.emea[0].wins} victoires</div>
                 <div>{statsSeason && statsSeason.seasons.grim_sky.regions.emea[0].losses} défaites</div>
                 <div>{statsSeason && statsSeason.seasons.grim_sky.regions.emea[0].abandons} abandon</div>
               </div>
-              <div>
+              <div className="pr-5">
                 {Rank(rankNumberTwo, arrayImage)}
               </div>
             </div>
