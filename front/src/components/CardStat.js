@@ -23,7 +23,14 @@ import platine1 from '../images/RANKS/PLATINE1.png';
 import diamant from '../images/RANKS/DIAMANT.png';
 
 let Rank = (number, arrayImage) => arrayImage[number - 1]
-let Abandon = (number) => number > 1 ? 'abandons' : 'abandon'
+const Abandon = (number) => {
+  if(number > 1){
+    return 'abandons'
+  }
+  else{
+    return 'abandon'
+  }
+}
 
 class CardStat extends Component {
 
@@ -61,22 +68,20 @@ class CardStat extends Component {
 
     return(
       <Fragment>
-        <Card className="mb-4 carteStat">
-          <CardHeader>
-            <div className="d-flex flex-row align-items-center justify-content-between">
+        <Card className="my-4 mx-1 carteStat">
+          <CardHeader className="d-flex flex-row align-items-center justify-content-between">
               <div className="d-flex flex-column">
                 <div>{stats && stats.username} - {stats && stats.progression.level}</div>
                 <div>E/M {stats && stats.stats[0].queue.ranked.kd}</div>
                 <div>V/D {stats && stats.stats[0].queue.ranked.wl}</div>
               </div>
               <div>
-                <img src={perso[0].operator.images.badge} alt="figures_perso" style={{maxWidth:'50px'}}/>
+                <img src={perso[0].operator.images.badge} alt="figures_perso" style={{maxWidth:'70px'}}/>
               </div>
-            </div>
           </CardHeader>
           <CardBody className="text-center seasonCard1">
             <div className="d-flex flex-row justify-content-between align-items-center">
-              <div>
+              <div className="w-80">
                 <div>{statsSeason && statsSeason.seasons.wind_bastion.name}</div>
                 <div>{statsSeason && statsSeason.seasons.wind_bastion.regions.emea[0].wins} victoires</div>
                 <div>{statsSeason && statsSeason.seasons.wind_bastion.regions.emea[0].losses} défaites</div>
@@ -102,14 +107,14 @@ class CardStat extends Component {
           </CardBody>
           <CardBody className="text-center">
             <Row>
-              <Col md='6'>
+              <Col md='6' className="border-right">
                 <div>{(perso[0].operator.name).toUpperCase()} - {(perso[0].operator.role).toUpperCase()}</div>
                 <div>Ratio E/M - {perso[0].kd}</div>
                 <div>Eliminations - {perso[0].kills}</div>
                 <div>Morts - {perso[0].deaths}</div>
                 <div>Headshots - {perso[0].headshots}</div>
                 <div>
-                  <img src={perso[0].operator.images.figure} alt="figures_perso" style={{maxWidth:'200px'}}/>
+                  <img src={perso[0].operator.images.figure} alt="figures_perso" style={{maxWidth:'150px'}}/>
                 </div>
               </Col>
               <Col md='6'>
@@ -119,7 +124,7 @@ class CardStat extends Component {
                 <div>Morts - {perso[1].deaths}</div>
                 <div>Headshots - {perso[1].headshots}</div>
                 <div>
-                  <img src={perso[1].operator.images.figure} alt="figures_perso" style={{maxWidth:'200px'}}/>
+                  <img src={perso[1].operator.images.figure} alt="figures_perso" style={{maxWidth:'150px'}}/>
                 </div>
               </Col>
             </Row>
