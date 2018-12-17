@@ -9,11 +9,13 @@ h2{
 .seasonCard1{
   border-bottom: 2px solid;
   border-width: 2px;
+  border-color: #424242;
 }
 
 .seasonCard2{
   border-bottom: 2px solid;
   border-width: 2px;
+  border-color: #424242;
 }
 
 CardHeader{
@@ -21,4 +23,17 @@ CardHeader{
 	background: linear-gradient(to right, #30CFD0 0%, #330867 100%);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
+}
+
+.perso1{
+  border-right: 1px solid;
+  border-color: #C7C6C6;
+}
+
+@media (max-width: 767.98px){
+  .perso1{
+    border-right: 0px;
+    border-bottom: 1px solid;
+    border-color: #C7C6C6;
+  }
 }

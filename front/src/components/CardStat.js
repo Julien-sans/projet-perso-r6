@@ -107,7 +107,7 @@ class CardStat extends Component {
           </CardBody>
           <CardBody className="text-center">
             <Row>
-              <Col md='6' className="border-right">
+              <Col md='6' className="perso1 my-2">
                 <div>{(perso[0].operator.name).toUpperCase()} - {(perso[0].operator.role).toUpperCase()}</div>
                 <div>Ratio E/M - {perso[0].kd}</div>
                 <div>Eliminations - {perso[0].kills}</div>
@@ -117,7 +117,7 @@ class CardStat extends Component {
                   <img src={perso[0].operator.images.figure} alt="figures_perso" style={{maxWidth:'150px'}}/>
                 </div>
               </Col>
-              <Col md='6'>
+              <Col md='6' className="my-2">
                 <div>{(perso[1].operator.name).toUpperCase()} - {(perso[1].operator.role).toUpperCase()}</div>
                 <div>Ratio E/M - {perso[1].kd}</div>
                 <div>Eliminations - {perso[1].kills}</div>
