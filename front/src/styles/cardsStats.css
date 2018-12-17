@@ -1,0 +1,24 @@
+.carteStat{
+  font-family: 'Baloo Bhaijaan', cursive;
+}
+
+h2{
+  font-family: 'Palanquin', sans-serif;
+}
+
+.seasonCard1{
+  border-bottom: 2px solid;
+  border-width: 2px;
+}
+
+.seasonCard2{
+  border-bottom: 2px solid;
+  border-width: 2px;
+}
+
+CardHeader{
+	text-transform: uppercase;
+	background: linear-gradient(to right, #30CFD0 0%, #330867 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}

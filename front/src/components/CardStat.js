@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
-import { CardHeader, CardBody, Card, Row, Col } from 'reactstrap';
+import { CardHeader, CardBody, Card, Col, Row } from 'reactstrap';
+import '../styles/cardsStats.css';
 import cuivre4 from '../images/RANKS/CUIVRE4.png';
 import cuivre3 from '../images/RANKS/CUIVRE3.png';
 import cuivre2 from '../images/RANKS/CUIVRE2.png';
@@ -22,6 +23,7 @@ import platine1 from '../images/RANKS/PLATINE1.png';
 import diamant from '../images/RANKS/DIAMANT.png';
 
 let Rank = (number, arrayImage) => arrayImage[number - 1]
+let Abandon = (number) => number > 1 ? 'abandons' : 'abandon'
 
 class CardStat extends Component {
 
@@ -30,6 +32,7 @@ class CardStat extends Component {
     const { stats, perso, statsSeason } = this.props;
 
     let rankNumber = statsSeason && statsSeason.seasons.wind_bastion.regions.emea[0].rank
+    let rankNumberTwo = statsSeason && statsSeason.seasons.grim_sky.regions.emea[0].rank
     const arrayImage =
     [
       <img src={cuivre4} alt={cuivre4} style={{maxWidth:'50px'}}/>,
@@ -54,52 +57,73 @@ class CardStat extends Component {
       <img src={diamant} alt={diamant} style={{maxWidth:'50px'}}/>
     ]
 
-    console.log(Rank(rankNumber, arrayImage))
+    let abandons = statsSeason && statsSeason.seasons.wind_bastion.regions.emea[0].abandons
+
     return(
       <Fragment>
-        <Card className="mb-4">
+        <Card className="mb-4 carteStat">
           <CardHeader>
             <div className="d-flex flex-row align-items-center justify-content-between">
               <div className="d-flex flex-column">
-                <div>{Rank(rankNumber, arrayImage)}</div>
                 <div>{stats && stats.username} - {stats && stats.progression.level}</div>
                 <div>E/M {stats && stats.stats[0].queue.ranked.kd}</div>
                 <div>V/D {stats && stats.stats[0].queue.ranked.wl}</div>
               </div>
               <div>
-                <img src={perso[0].operator.images.badge} alt="figures_perso" style={{maxWidth:'80px'}}/>
+                <img src={perso[0].operator.images.badge} alt="figures_perso" style={{maxWidth:'50px'}}/>
               </div>
             </div>
           </CardHeader>
-            <CardBody className="text-center">
+          <CardBody className="text-center seasonCard1">
+            <div className="d-flex flex-row justify-content-between align-items-center">
               <div>
                 <div>{statsSeason && statsSeason.seasons.wind_bastion.name}</div>
                 <div>{statsSeason && statsSeason.seasons.wind_bastion.regions.emea[0].wins} victoires</div>
                 <div>{statsSeason && statsSeason.seasons.wind_bastion.regions.emea[0].losses} défaites</div>
-                <div>{statsSeason && statsSeason.seasons.wind_bastion.regions.emea[0].abandons} abandon</div>
+                <div>{abandons} {Abandon(abandons)}</div>
               </div>
-              <div>{Rank(rankNumber, arrayImage)}</div>
-            </CardBody>
-            <CardBody className="text-center">
-              <div>{statsSeason && statsSeason.seasons.grim_sky.name}</div>
-              <div>{statsSeason && statsSeason.seasons.grim_sky.regions.emea[0].wins} victoires</div>
-              <div>{statsSeason && statsSeason.seasons.grim_sky.regions.emea[0].losses} défaites</div>
-              <div>{statsSeason && statsSeason.seasons.grim_sky.regions.emea[0].abandons} abandon</div>
-            </CardBody>
-            <CardBody className="text-center">
-              <div>{(perso[0].operator.name).toUpperCase()} - {(perso[0].operator.role).toUpperCase()}</div>
-              <div>Ratio E/M - {perso[0].kd}</div>
-              <div>Eliminations - {perso[0].kills}</div>
-              <div>Morts - {perso[0].deaths}</div>
-              <div>Headshots - {perso[0].headshots}</div>
-            </CardBody>
-            <CardBody>
-              <Col md='6' className="d-flex justify-content-center">
+              <div>
+                {Rank(rankNumber, arrayImage)}
+              </div>
+            </div>
+          </CardBody>
+          <CardBody className="text-center seasonCard2">
+            <div className="d-flex flex-row justify-content-between align-items-center">
+              <div>
+                <div>{statsSeason && statsSeason.seasons.grim_sky.name}</div>
+                <div>{statsSeason && statsSeason.seasons.grim_sky.regions.emea[0].wins} victoires</div>
+                <div>{statsSeason && statsSeason.seasons.grim_sky.regions.emea[0].losses} défaites</div>
+                <div>{statsSeason && statsSeason.seasons.grim_sky.regions.emea[0].abandons} abandon</div>
+              </div>
+              <div>
+                {Rank(rankNumberTwo, arrayImage)}
+              </div>
+            </div>
+          </CardBody>
+          <CardBody className="text-center">
+            <Row>
+              <Col md='6'>
+                <div>{(perso[0].operator.name).toUpperCase()} - {(perso[0].operator.role).toUpperCase()}</div>
+                <div>Ratio E/M - {perso[0].kd}</div>
+                <div>Eliminations - {perso[0].kills}</div>
+                <div>Morts - {perso[0].deaths}</div>
+                <div>Headshots - {perso[0].headshots}</div>
                 <div>
                   <img src={perso[0].operator.images.figure} alt="figures_perso" style={{maxWidth:'200px'}}/>
                 </div>
               </Col>
-            </CardBody>
+              <Col md='6'>
+                <div>{(perso[1].operator.name).toUpperCase()} - {(perso[1].operator.role).toUpperCase()}</div>
+                <div>Ratio E/M - {perso[1].kd}</div>
+                <div>Eliminations - {perso[1].kills}</div>
+                <div>Morts - {perso[1].deaths}</div>
+                <div>Headshots - {perso[1].headshots}</div>
+                <div>
+                  <img src={perso[1].operator.images.figure} alt="figures_perso" style={{maxWidth:'200px'}}/>
+                </div>
+              </Col>
+            </Row>
+          </CardBody>
         </Card>
       </Fragment>
     )

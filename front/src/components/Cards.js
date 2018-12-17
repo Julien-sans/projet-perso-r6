@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import CardStat from './CardStat';
-import { Container, Row, Col, Card } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
 import axios from 'axios';
 
 class Cards extends Component {
