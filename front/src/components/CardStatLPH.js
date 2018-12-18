@@ -105,6 +105,16 @@ class CardStat extends Component {
               </div>
             </div>
           </CardBody>
+          <CardBody className="text-center seasonCard2">
+            <div className="d-flex flex-row justify-content-center align-items-center">
+              <div>
+                <div><h4 className="noms">Ratio par Mode de jeu</h4></div>
+                <div>Bombe &emsp;  {statsSeason && stats && stats.stats[0].gamemode.bomb.wl}</div>
+                <div>Otage &emsp;   {statsSeason && stats && stats.stats[0].gamemode.hostage.wl}</div>
+                <div>Sécu de Zone &emsp;  {statsSeason && stats && stats.stats[0].gamemode.secure_area.wl}</div>
+              </div>
+            </div>
+          </CardBody>
           <CardBody className="text-center">
             <Row>
               <Col md='6' className="perso1 my-2">

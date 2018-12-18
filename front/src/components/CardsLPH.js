@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import CardStatLPH from './CardStatLPH';
 import { Container, Row, Col } from 'reactstrap';
 import axios from 'axios';
+import '../styles/CardsLPH.css';
 
 class CardsLPH extends Component {
 
@@ -61,7 +62,7 @@ render() {
 console.log(arrayPerso)
 
 return(
-  <div>
+  <div className="page_lph">
     <Container fluid>
       <Row>
         {

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import CardStat from './CardStat';
 import { Container, Row, Col } from 'reactstrap';
 import axios from 'axios';
+import '../styles/Cards.css';
 
 class Cards extends Component {
 
@@ -53,41 +54,31 @@ class Cards extends Component {
     Promise.all(promiseSeasons).then(statsSeason => this.setState({ statsSeason }))
   }
 
-
-  /*componentDidMount(username) {
-    axios.get(`/api/stats/e180330f-e83f-43c3-abb2-bb3994108ae1/seasonal`)
-      .then(response => response.data)
-      .then(stats => this.setState({ stats }));
-  }*/
-
   render() {
 
     const { statsArray, statsSeason } = this.state;
     console.log(this.state)
 
     const arrayPerso = statsArray.sort((player1, player2) =>
-      player2.progression.level - player1.progression.level
-    ).map(perso => perso.operators.sort((operateur1, operateur2) => operateur2.playtime - operateur1.playtime))
+    player2.progression.level - player1.progression.level).map(perso => perso.operators.sort((operateur1, operateur2) => operateur2.playtime - operateur1.playtime))
     console.log(arrayPerso)
 
     const decreasingLevel = statsArray.sort((player1, player2) =>
-      player2.progression.level - player1.progression.level
-    )
+    player2.progression.level - player1.progression.level)
 
     return(
-      <div>
-        <Container fluid>
-          <Row>
-            {
-              decreasingLevel.map((stat, index) =>
+        <div className="Cards">
+          <Container fluid>
+            <Row>
+              {
+                decreasingLevel.map((stat, index) =>
                 <Col key={index} sm='12' md='4'>
-                    <CardStat className="mx-auto" stats={stat} perso={arrayPerso[index]} statsSeason={statsSeason[index]} />
+                  <CardStat className="mx-auto" stats={stat} perso={arrayPerso[index]} statsSeason={statsSeason[index]} />
                 </Col>
               )
             }
           </Row>
         </Container>
-
       </div>
     );
   }
