@@ -6,6 +6,10 @@
 	animation: Gradient 15s ease infinite;
 }
 
+.App{
+	margin-top: 30px;
+}
+
 @-webkit-keyframes Gradient {
 	0% {
 		background-position: 0% 50%
