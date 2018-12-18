@@ -15,6 +15,7 @@ class CardsLPH extends Component {
   }
 
   componentDidMount(){
+
     const urls =
     [
       'api/stats/edfbf879-57c1-41fb-8ca2-6e4a1fec4018/',
@@ -46,37 +47,28 @@ class CardsLPH extends Component {
     Promise.all(promiseSeasons).then(statsSeason => this.setState({ statsSeason }))
   }
 
+  render() {
 
-  /*componentDidMount(username) {
-  axios.get(`/api/stats/e180330f-e83f-43c3-abb2-bb3994108ae1/seasonal`)
-  .then(response => response.data)
-  .then(stats => this.setState({ stats }));
-}*/
+    const { statsArray, statsSeason } = this.state;
 
-render() {
+    const arrayPerso = statsArray.map(perso => perso.operators.sort((operateur1, operateur2) => operateur2.playtime - operateur1.playtime))
 
-  const { statsArray, statsSeason } = this.state;
-  console.log(this.state)
+    return(
+      <div className="page_lph">
+        <Container fluid>
+          <Row>
+            {
+              statsArray.map((stat, index) =>
+              <Col key={index} sm='12' md='4'>
+                <CardStatLPH className="mx-auto" stats={stat} perso={arrayPerso[index]} statsSeason={statsSeason[index]} />
+              </Col>
+            )
+          }
+        </Row>
+      </Container>
 
-  const arrayPerso = statsArray.map(perso => perso.operators.sort((operateur1, operateur2) => operateur2.playtime - operateur1.playtime))
-console.log(arrayPerso)
-
-return(
-  <div className="page_lph">
-    <Container fluid>
-      <Row>
-        {
-          statsArray.map((stat, index) =>
-          <Col key={index} sm='12' md='4'>
-            <CardStatLPH className="mx-auto" stats={stat} perso={arrayPerso[index]} statsSeason={statsSeason[index]} />
-          </Col>
-        )
-      }
-    </Row>
-  </Container>
-
-</div>
-);
+    </div>
+  );
 }
 }
 

@@ -15,6 +15,7 @@ class Cards extends Component {
   }
 
   componentDidMount(){
+
     const urls =
     [
       'api/stats/e180330f-e83f-43c3-abb2-bb3994108ae1/',
@@ -57,31 +58,29 @@ class Cards extends Component {
   render() {
 
     const { statsArray, statsSeason } = this.state;
-    console.log(this.state)
 
     const arrayPerso = statsArray.sort((player1, player2) =>
     player2.progression.level - player1.progression.level).map(perso => perso.operators.sort((operateur1, operateur2) => operateur2.playtime - operateur1.playtime))
-    console.log(arrayPerso)
 
     const decreasingLevel = statsArray.sort((player1, player2) =>
     player2.progression.level - player1.progression.level)
 
     return(
-        <div className="Cards">
-          <Container fluid>
-            <Row>
-              {
-                decreasingLevel.map((stat, index) =>
-                <Col key={index} sm='12' md='4'>
-                  <CardStat className="mx-auto" stats={stat} perso={arrayPerso[index]} statsSeason={statsSeason[index]} />
-                </Col>
-              )
-            }
-          </Row>
-        </Container>
-      </div>
-    );
-  }
+      <div className="Cards">
+        <Container fluid>
+          <Row>
+            {
+              decreasingLevel.map((stat, index) =>
+              <Col key={index} sm='12' md='4'>
+                <CardStat className="mx-auto" stats={stat} perso={arrayPerso[index]} statsSeason={statsSeason[index]} />
+              </Col>
+            )
+          }
+        </Row>
+      </Container>
+    </div>
+  );
+}
 }
 
 export default Cards;
