@@ -4,7 +4,8 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink } from 'reactstrap';
+  NavLink,
+  Button } from 'reactstrap';
 
 export default class NavBar extends React.Component {
   constructor(props) {
@@ -24,10 +25,11 @@ export default class NavBar extends React.Component {
     return (
       <div>
         <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">LPH STATS</NavbarBrand>
+          <NavbarBrand href="/">STATS</NavbarBrand>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/components/">Meteo</NavLink>
+                <NavLink href="/components/"><Button color="success">LPH</Button></NavLink>
+
               </NavItem>
             </Nav>
         </Navbar>
