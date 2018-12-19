@@ -3,6 +3,7 @@ import CardStatLPH from './CardStatLPH';
 import { Container, Row, Col } from 'reactstrap';
 import axios from 'axios';
 import '../styles/CardsLPH.css';
+import loadingImage from '../images/loadingImage.gif';
 
 class CardsLPH extends Component {
 
@@ -10,7 +11,8 @@ class CardsLPH extends Component {
     super(props);
     this.state = {
       statsArray: [],
-      statsSeason: []
+      statsSeason: [],
+      loading: true
     };
   }
 
@@ -41,15 +43,15 @@ class CardsLPH extends Component {
     ]
 
     let promiseArray = urls.map(url => axios.get(url).then(response => response.data).catch(error => { console.error(error) }));
-    Promise.all(promiseArray).then(statsArray => this.setState({ statsArray }))
+    Promise.all(promiseArray).then(statsArray => this.setState({ loading: false, statsArray }))
 
     let promiseSeasons = urlsSeasons.map(url => axios.get(url).then(response => response.data).catch(error => { console.error(error) }));
-    Promise.all(promiseSeasons).then(statsSeason => this.setState({ statsSeason }))
+    Promise.all(promiseSeasons).then(statsSeason => this.setState({ loading: false, statsSeason }))
   }
 
   render() {
 
-    const { statsArray, statsSeason } = this.state;
+    const { statsArray, statsSeason, loading } = this.state;
 
     const arrayPerso = statsArray.map(perso => perso.operators.sort((operateur1, operateur2) => operateur2.playtime - operateur1.playtime))
 
@@ -58,6 +60,11 @@ class CardsLPH extends Component {
         <Container fluid>
           <Row>
             {
+              loading ?
+              <div className="loadingImage d-flex align-items-center mx-auto">
+                <img src={loadingImage} alt={loadingImage} style={{maxWidth:'300px'}}/>
+              </div>
+              :
               statsArray.map((stat, index) =>
               <Col key={index} sm='12' md='4'>
                 <CardStatLPH className="mx-auto" stats={stat} perso={arrayPerso[index]} statsSeason={statsSeason[index]} />
