@@ -18,18 +18,18 @@ class Cards extends Component {
 
     const urls =
     [
-      'api/stats/e180330f-e83f-43c3-abb2-bb3994108ae1/',
-      'api/stats/c0c2cad6-abe7-4026-91ac-dc1c5d29cb5f/',
       'api/stats/f763f92e-ad89-4d2e-bd2c-bdc72ed44d8a/',
-      'api/stats/dd52645c-c662-4e45-9cf4-90a1acb79a97/',
-      'api/stats/d88f9352-d01c-4e91-a769-a4bbfbe5e0bd/',
-      'api/stats/d91a1487-4427-4858-97ed-2f9c772bc17c/',
-      'api/stats/9307af34-bc74-4716-be66-97f642d55069/',
-      'api/stats/98e0a69a-ac53-4461-862f-0e1471fe7ea5/',
-      'api/stats/f7734587-2bc6-42ff-a11a-024a347a5297/',
+      'api/stats/e44cbc00-3336-4e53-a2e7-e934ad9588be/',
+      'api/stats/c0c2cad6-abe7-4026-91ac-dc1c5d29cb5f/',
+      'api/stats/e180330f-e83f-43c3-abb2-bb3994108ae1/',
       'api/stats/a4c18ded-1f4d-4b60-9a8c-19a7d60ff6ef/',
+      'api/stats/d91a1487-4427-4858-97ed-2f9c772bc17c/',
+      'api/stats/f7734587-2bc6-42ff-a11a-024a347a5297/',
+      'api/stats/98e0a69a-ac53-4461-862f-0e1471fe7ea5/',
+      'api/stats/9307af34-bc74-4716-be66-97f642d55069/',
+      'api/stats/dd52645c-c662-4e45-9cf4-90a1acb79a97/',
       'api/stats/c04310ce-b4b3-49d8-9672-8048698108f9/',
-      'api/stats/e44cbc00-3336-4e53-a2e7-e934ad9588be/'
+      'api/stats/d88f9352-d01c-4e91-a769-a4bbfbe5e0bd/'
     ]
 
     const urlsSeasons =
@@ -58,19 +58,15 @@ class Cards extends Component {
   render() {
 
     const { statsArray, statsSeason } = this.state;
-
-    const arrayPerso = statsArray.sort((player1, player2) =>
-    player2.progression.level - player1.progression.level).map(perso => perso.operators.sort((operateur1, operateur2) => operateur2.playtime - operateur1.playtime))
-
-    const decreasingLevel = statsArray.sort((player1, player2) =>
-    player2.progression.level - player1.progression.level)
+    
+    const arrayPerso = statsArray.map(perso => perso.operators.sort((operateur1, operateur2) => operateur2.playtime - operateur1.playtime))
 
     return(
       <div className="Cards">
         <Container fluid>
           <Row>
             {
-              decreasingLevel.map((stat, index) =>
+              statsArray.map((stat, index) =>
               <Col key={index} sm='12' md='4'>
                 <CardStat className="mx-auto" stats={stat} perso={arrayPerso[index]} statsSeason={statsSeason[index]} />
               </Col>
