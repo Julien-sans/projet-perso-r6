@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { CardHeader, CardBody, Card, Col, Row } from 'reactstrap';
+import { CardHeader, CardBody, Card, Col, Row, Progress, Tooltip } from 'reactstrap';
 import '../styles/cardsStats.css';
 import cuivre4 from '../images/RANKS/CUIVRE4.png';
 import cuivre3 from '../images/RANKS/CUIVRE3.png';
@@ -36,7 +36,7 @@ class CardStat extends Component {
 
   render() {
 
-    const { stats, perso, statsSeason } = this.props;
+    const { stats, perso, statsSeason, rageBarre } = this.props;
 
     let rankNumber = statsSeason && statsSeason.seasons.wind_bastion.regions.emea[0].rank
     let rankNumberTwo = statsSeason && statsSeason.seasons.grim_sky.regions.emea[0].rank
@@ -79,6 +79,9 @@ class CardStat extends Component {
               <img src={perso[0].operator.images.badge} alt="figures_perso" style={{maxWidth:'70px'}}/>
             </div>
           </CardHeader>
+          <Fragment>
+            {rageBarre}
+          </Fragment>
           <CardBody className="text-center seasonCard1">
             <div className="d-flex flex-row justify-content-between align-items-center pl-5">
               <div className="w-80">

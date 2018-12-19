@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import CardStat from './CardStat';
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col, Progress } from 'reactstrap';
 import axios from 'axios';
 import '../styles/Cards.css';
 import loadingImage from '../images/loadingImage.gif';
@@ -63,6 +63,22 @@ class Cards extends Component {
 
     const arrayPerso = statsArray.map(perso => perso.operators.sort((operateur1, operateur2) => operateur2.playtime - operateur1.playtime))
 
+    const rageBarre =
+    [
+      <Progress animated style={{'height': '9px'}} value={90} color='danger'>90%</Progress>,
+      <Progress animated style={{'height': '9px'}} value={90} color='danger'>90%</Progress>,
+      <Progress animated style={{'height': '9px'}} value={70} color='danger'>70%</Progress>,
+      <Progress animated style={{'height': '9px'}} value={30} color='success'>30%</Progress>,
+      <Progress animated style={{'height': '9px'}} value={50} color='warning'>50%</Progress>,
+      <Progress animated style={{'height': '9px'}} value={40} color='warning'>40%</Progress>,
+      <Progress animated style={{'height': '9px'}} value={70} color='danger'>70%</Progress>,
+      <Progress animated style={{'height': '9px'}} value={50} color='warning'>50%</Progress>,
+      <Progress animated style={{'height': '9px'}} value={30} color='success'>30%</Progress>,
+      <Progress animated style={{'height': '9px'}} value={50} color='warning'>50%</Progress>,
+      <Progress animated style={{'height': '9px'}} value={10} color='success'>10%</Progress>,
+      <Progress animated style={{'height': '9px'}} value={20} color='success'>20%</Progress>,
+    ]
+
     return(
       <div className="Cards">
         <Container fluid>
@@ -70,12 +86,12 @@ class Cards extends Component {
             {
               loading ?
               <div className="loadingImage d-flex align-items-center mx-auto">
-                <img className="loadingImg" src={loadingImage} alt={loadingImage} style={{maxWidth:'300px'}}/>
+                <img src={loadingImage} alt={loadingImage} style={{maxWidth:'300px'}}/>
               </div>
               :
               statsArray.map((stat, index) =>
               <Col key={index} sm='12' md='4'>
-                <CardStat className="mx-auto" stats={stat} perso={arrayPerso[index]} statsSeason={statsSeason[index]} />
+                <CardStat className="mx-auto" stats={stat} perso={arrayPerso[index]} rageBarre={rageBarre[index]} statsSeason={statsSeason[index]} />
               </Col>
             )
           }
