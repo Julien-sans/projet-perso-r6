@@ -23,7 +23,7 @@ import '../styles/NavBar.css';
         <Fragment>
           <Navbar color="dark" className="fixed-top" expand="md">
           <Link exact to='/Home' className="mr-3 logo"><strong className="text-white">STATS</strong></Link>
-          <Link className="nav-item text-white lphLink text-danger font-weight-bold" exact to="/lph-stats">LPH</Link>
+          <Link className="nav-item text-white lphLink text-danger font-weight-bold text-center" exact to="/lph-stats">LPH</Link>
         </Navbar>
       </Fragment>
     );

@@ -49,3 +49,7 @@
 .loadingImage{
 	min-height: calc(100vh - 30px);
 }
+
+.rageBarre{
+  border-radius: 0%;
+}

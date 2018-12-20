@@ -9,3 +9,13 @@
 .logo:hover {
   text-decoration: none;
 }
+
+.lphLink{
+  padding:6px 0 6px 0;
+  font:Bold 13px Arial;
+  background:white;
+  color:#fff;
+  width:50px;
+  border-radius:2px;
+  border:none;
+}

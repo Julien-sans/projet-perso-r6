@@ -45,3 +45,7 @@
 		background-position: 0% 50%
 	}
 }
+
+.loadingImage{
+	min-height: calc(100vh - 30px);
+}

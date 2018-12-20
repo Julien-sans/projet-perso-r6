@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { CardHeader, CardBody, Card, Col, Row, Progress, Tooltip } from 'reactstrap';
+import { CardHeader, CardBody, Card, Col, Row } from 'reactstrap';
 import '../styles/cardsStats.css';
 import cuivre4 from '../images/RANKS/CUIVRE4.png';
 import cuivre3 from '../images/RANKS/CUIVRE3.png';
@@ -23,14 +23,7 @@ import platine1 from '../images/RANKS/PLATINE1.png';
 import diamant from '../images/RANKS/DIAMANT.png';
 
 let Rank = (number, arrayImage) => arrayImage[number - 1]
-const Abandon = (number) => {
-  if(number > 1){
-    return 'abandons'
-  }
-  else{
-    return 'abandon'
-  }
-}
+let abandon = (number) => number > 1 ? 'abandons' : 'abandon';
 
 class CardStat extends Component {
 
@@ -88,7 +81,7 @@ class CardStat extends Component {
                 <div><h4 className="noms">{statsSeason && statsSeason.seasons.wind_bastion.name}</h4></div>
                 <div>{statsSeason && statsSeason.seasons.wind_bastion.regions.emea[0].wins} victoires</div>
                 <div>{statsSeason && statsSeason.seasons.wind_bastion.regions.emea[0].losses} défaites</div>
-                <div>{abandons} {Abandon(abandons)}</div>
+                <div>{abandons} {abandon(abandons)}</div>
               </div>
               <div className="pr-5">
                 {Rank(rankNumber, arrayImage)}
