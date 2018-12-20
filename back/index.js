@@ -1,9 +1,13 @@
 const RainbowSixApi = require('rainbowsix-siege-api');
+const path = require('path');
+const fs = require('fs');
 const express = require('express');
 const app = express();
 const port = 5000;
 const statsRouter = require('./routes/stats');
 const R6 = new RainbowSixApi();
+const buildDir = path.resolve(__dirname, '../front/build');
+const hasBuild = fs.existsSync(buildDir);
 
 app.get('/api/stats/:userId/', (req, res, next) => {
     const userId = req.params.userId;
@@ -32,6 +36,13 @@ app.get('/api/stats/:userId/seasonal', (req, res) => {
 });
 
 app.use('/api/stats', statsRouter)
+
+if(hasBuild){
+  app.use(express.static(buildDir));
+  app.get('*', (req, res) => {
+    res.sendFile(`${buildDir}/index.html`)
+  })
+}
 
 app.listen(port, (err) => {
   if (err) {
