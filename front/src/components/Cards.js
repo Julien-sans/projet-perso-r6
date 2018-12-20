@@ -60,6 +60,7 @@ class Cards extends Component {
   render() {
 
     const { statsArray, statsSeason, loading } = this.state;
+    console.log(this.state)
 
     const arrayPerso = statsArray.map(perso => perso.operators.sort((operateur1, operateur2) => operateur2.playtime - operateur1.playtime))
 
